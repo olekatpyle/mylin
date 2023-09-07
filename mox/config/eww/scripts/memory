@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+LC_NUMERIC="en_US.UTF-8"
+
+while true; do    
+  # human-readable
+  freeH=$(free -h --si | rg "Speicher:")
+  # non-human-readable
+  freeN=$(free --mega | rg "Speicher:")
+
+  total="$(echo "$freeH" | awk '{ print $2 }')"
+  used="$(echo "$freeH" | awk '{ print $3 }')"
+  t="$(echo "$freeN" | awk '{ print $2 }')"
+  u="$(echo "$freeN" | awk '{ print $3 }')"
+
+  free=$(printf '%.1fG' "$(bc -l <<< "($t - $u) / 1000")")
+  perc=$(printf '%.1f' "$(free -m | rg Speicher | awk '{print ($3/$2)*100}')")
+
+  echo '{ "total": "'"$total"'", "used": "'"$used"'", "free": "'"$free"'", "percentage": '"$perc"' }'
+
+  sleep 3
+done

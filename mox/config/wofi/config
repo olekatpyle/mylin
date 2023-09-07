@@ -1,0 +1,11 @@
+mode=drun,run
+run-always_parse_args=true
+term=kitty
+allow_images=true
+hide_scroll=true
+insensitive=true
+prompt=
+height=60%
+width=20%
+x=10
+y=50

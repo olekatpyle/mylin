@@ -1,0 +1,18 @@
+(defvar ws-icons '["A", "S", "D", "F", "U", "I", "O", "P"]')
+
+(defpoll time :interval "5s"
+  :initial `date +'{"date": "%d/%m","day": "%A","hour":"%H","min":"%M"}'`
+ `date +'{"date": "%d/%m","day": "%A","hour":"%H","min":"%M"}'`)
+;(defpoll quote :interval "1800s"
+;  :initial `scripts/quote`
+; `scripts/quote`)
+
+(deflisten workspace "scripts/workspaces")
+(deflisten brightness "scripts/brightness")
+(deflisten volume "scripts/volume")
+(deflisten memory "scripts/memory")
+(deflisten net "scripts/net")
+(deflisten bluetooth "scripts/bluetooth")
+(deflisten airplane "scripts/airplane")
+(deflisten battery "scripts/battery")
+(deflisten events "scripts/events")

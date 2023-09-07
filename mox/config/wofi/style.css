@@ -1,0 +1,28 @@
+#window {
+    background-color: #0e0e0e;
+}
+#input {
+    background-color: #0e0e0e;
+    color: white;
+}
+
+#inner-box {
+}
+
+#entry {
+    margin-left: 4px;
+    font-size: 16px;
+}
+
+#img {
+    padding: 14px;
+}
+
+#scroll {
+    color: #6c6c6c;
+}
+
+#entry:selected {
+    background-color: #111111;
+    color: #bcbcbc;
+}

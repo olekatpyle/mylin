@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+colors=("#d75fff" "#ffe25f")
+dimmed=("#FFFFFF" "#FFFFFF")
+empty="#646464"
+
+# get initial focused workspace
+focusedws=$(hyprctl -j monitors | jaq -r '.[] | select(.focused == true) | .activeWorkspace.id')
+
+declare -A o=([1]=0 [2]=0 [3]=0 [4]=0 [5]=0 [6]=0 [7]=0 [8]=0)
+declare -A monitormap
+declare -A workspaces
+
+# set color for each workspace
+status() {
+  if [ "${o[$1]}" -eq 1 ]; then
+    mon=${monitormap[${workspaces[$1]}]}
+    if [ $focusedws -eq "$1" ]; then
+      echo -n "${colors[$mon]}"
+    else
+      echo -n "${dimmed[$mon]}"
+    fi
+  else
+    echo -n "$empty"
+  fi
+}
+
+# handle workspace create/destroy
+workspace_event() {
+  i=${1%,*}
+  o[$i]=$2
+  while read -r k v; do workspaces[$k]="$v"; done < <(hyprctl -j workspaces | gojq -r '.[]|"\(.id) \(.monitor)"')
+}
+# handle monitor (dis)connects and monitor swaps
+monitor_event() {
+  while read -r k v; do monitormap["$k"]=$v; done < <(hyprctl -j monitors | gojq -r '.[]|"\(.name) \(.id) "')
+}
+
+# generate the json for eww
+generate() {
+  echo -n '['
+
+  for i in {1..8}; do
+    echo -n ''$([ $i -eq 1 ] || echo ,) '{ "number": "'"$i"'", "color": "'$(status "$i")'" }'
+  done
+
+  echo ']'
+}
+
+# setup
+
+# add monitors
+monitor_event
+
+# add workspaces
+while read -r k v; do workspaces[$k]="$v"; done < <(hyprctl -j workspaces | gojq -r '.[]|"\(.id) \(.monitor)"')
+
+# check occupied workspaces
+for num in "${!workspaces[@]}"; do
+  o[$num]=1
+done
+# generate initial widget
+generate
+
+semaphore=0
+# main loop
+socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r line; do
+  echo "LINE: $line"
+  echo ${o[@]}
+  case ${line%>>*} in
+    "workspace")
+      focusedws=${line#*>>}
+      ;;
+    "focusedmon")
+      focusedws=${line#*,}
+      if [[ semaphore -eq 0 ]]; then
+          semaphore=1
+      else
+          semaphore=0
+      fi
+      ;;
+    "createworkspace")
+      workspace_event "${line#*>>}" 1
+      ;;
+    "destroyworkspace")
+      workspace_event "${line#*>>}" 0
+      ;;
+    "moveworkspace")
+      workspace_event "${line#*>>}" 1
+      tmp=${line#*>>}
+      if [[ semaphore -eq 0 ]]; then
+        focusedws=${tmp%,*}
+        semaphore=1
+      else
+        semaphore=0
+      fi
+      generate
+      ;;
+    "monitor"*)
+      monitor_event
+      ;;
+  esac
+  generate
+done 

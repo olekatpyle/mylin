@@ -1,0 +1,72 @@
+(include "./modules/variables.yuck")
+;(include "./modules/quote.yuck")
+(include "./modules/workspaces.yuck")
+(include "./modules/status.yuck")
+(include "./popups/status.yuck")
+
+(defwidget left []
+  (box
+    :space-evenly false
+    :halign "start"
+    (workspaces)
+  )
+)
+
+(defwidget center []
+  (box
+    :space-evenly false
+    :halign "center"
+    ;(quotes)
+  )
+)
+
+(defwidget right[]
+  (box
+    :space-evenly false
+    :halign "end"
+    (status)
+  )
+)
+
+(defwidget bar []
+  (centerbox
+    :class "bar"
+    :style "background-color: rgba(0,0,0,.9);"
+    (left)
+    (center)
+    (right)
+  )
+)
+
+(defwindow bar
+    :monitor 0
+    :geometry (geometry :x "0%"
+      :y "0px"
+      :width "100%"
+      :anchor "top center")
+    :stacking "fg"
+    :exclusive true
+   (bar)
+)
+
+(defwindow leftpanel
+    :monitor 0
+    :geometry (geometry :x "1%" :y "0%"
+      :width "140px"
+      :height "32px"
+      :anchor "top left")
+    :stacking "fg"
+    :exclusive true 
+    (left)
+)
+
+(defwindow rightpanel
+    :monitor 0
+    :geometry (geometry :x "1%" :y "-3%"
+      :width "140px"
+      :height "32px"
+      :anchor "top right")
+    :stacking "fg"
+    :exclusive true 
+    (right)
+)

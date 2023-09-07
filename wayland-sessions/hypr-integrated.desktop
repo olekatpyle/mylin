@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Hyprland (Intel)
+Comment=An intelligent dynamic tiling Wayland compositor
+Exec=/home/mox/.config/hypr/wrapper/hypr-integrated
+Type=Application

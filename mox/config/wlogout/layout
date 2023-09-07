@@ -1,0 +1,36 @@
+{
+    "label" : "logout",
+    "action" : "loginctl terminate-user $USER",
+    "text" : "Ausloggen",
+    "keybind" : "e"
+}
+{
+    "label" : "lock",
+    "action" : "swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 4 --effect-blur 7x5 --ring-color d75fff --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --grace 2 --fade-in 0.2 --effect-greyscale",
+    "text" : "Sperren",
+    "keybind" : "l"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Energie sparen",
+    "keybind" : "u"
+}
+{
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Tiefschlaf",
+    "keybind" : "h"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Neustarten",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Herunterfahren",
+    "keybind" : "s"
+}

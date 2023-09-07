@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+file="/home/olekatpyle/.local/share/evolution/calendar/system/calendar.ics"
+events="{}"
+semaphore=0
+
+sanitize() {
+	echo "$1" | sed 's/\r//g'
+}
+
+human_date() {
+        date -d "$1" +"%d/%m, %A"
+}
+
+human_time() {
+        hour=`awk '{print substr($0, 1, 2)}' <<< $1` 
+        min=`awk '{print substr($0, 3, 2)}' <<< $1` 
+        echo "$hour:$min"
+}
+
+while true; do
+        limit=0
+        while read -r line; do
+                if [ $limit -eq 3 ]; then
+                        break
+                fi
+                #echo $line
+
+                # add summary
+                case "$line" in
+                        UID*)
+                                uid=`echo "$line" | cut -d':' -f 2`
+                                uid=$(sanitize "$uid")
+                                ;;
+                        DTSTART*)
+                                start=`echo "$line" | cut -d':' -f 2`
+                                start=$(sanitize "$start")
+                                starttime=""
+                                ;;
+                        DTEND*)
+                                end=`echo "$line" | cut -d':' -f 2`
+                                end=$(sanitize "$end")
+                                endtime=""
+                                ;;
+
+                        2*)
+                                if [ $semaphore -eq 0 ]; then
+                                        start=`echo "$line" | cut -d'T' -f 1`
+                                        start=$(sanitize "$start")
+                                        starttime=`echo "$line" | cut -d'T' -f 2`
+                                        starttime=$(sanitize "$starttime")
+                                        semaphore=1
+                                else
+                                        end=`echo "$line" | cut -d'T' -f 1`
+                                        end=$(sanitize "$end")
+                                        endtime=`echo "$line" | cut -d'T' -f 2`
+                                        endtime=$(sanitize "$endtime")
+                                        semaphore=0
+                                fi
+                                ;;
+                        SUMMARY*)
+                                summary=`echo "$line" | cut -d':' -f 2`
+                                ;;
+                        DESCRIPTION*)
+                                description=`echo "$line" | cut -d':' -f 2`
+                                ;;
+                        LOCATION*)
+                                location=`echo "$line" | cut -d':' -f 2`
+                                ;;
+                        END:VEVENT*)
+                                # create json
+                                if [ $start == $end ]; then
+                                        date=$(human_date "$start")
+                                else
+                                        start=$(human_date "$start")
+                                        end=$(human_date "$end")
+                                        date="$start - $end"
+                                fi
+
+                                if [[ -n $starttime ]]; then
+                                        starttime=$(human_time "$starttime")             
+                                        endtime=$(human_time "$endtime")             
+                                        time="$starttime - $endtime"
+                                else
+                                        time=""
+                                fi
+                                events=$(jq --arg l "$limit" \
+                                --arg uid "$(sanitize "$uid")" \
+                                --arg date "$date" \
+                                --arg time "$time" \
+                                --arg summary "$(sanitize "$summary")" \
+                                --arg description "$(sanitize "$description")" \
+                                --arg location "$(sanitize "$location")" \
+                                '.+ {($l):{"uid": $uid, "date": $date, "time": $time, "summary": $summary, "description": $description, "location": $location}}' <<< "${events}")
+
+                                limit=$((limit+1))
+                                starttime=""
+                                endtime=""
+                                ;;
+                        *)
+                                ;;
+                esac
+        done <$file
+
+        echo $events
+        sleep 60
+done
+

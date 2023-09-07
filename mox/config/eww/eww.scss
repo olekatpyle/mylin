@@ -1,0 +1,56 @@
+@import 'scss/color';
+
+@mixin rounding {
+  border-radius: 4px;
+}
+
+@mixin window {
+  border: 1px solid $border;
+  box-shadow: 0 2px 3px $shadow;
+  margin: 5px 5px 10px;
+  @include rounding;
+}
+
+@mixin bar {
+  @include rounding;
+  margin: 2px;
+  padding:0 10;
+  //background-color: rgba(0,0,0,.9);
+  font-family: FiraCode;
+  font-weight: bold;
+}
+
+@import 'scss/status';
+@import 'scss/workspaces';
+
+* {
+  all: unset;
+  transition: 200ms ease;
+  color: #ffffff;
+}
+
+button {
+    padding: 5;
+    margin: 4;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: rgba(0,0,0,.8);
+}
+
+.popup {
+  @include window;
+  @include rounding;
+  background-color: $bg;
+  border: 1px solid $bg;
+  box-shadow: 5px 8px 0px black;
+}
+
+scale trough {
+  background-color: $bg1;
+  border-radius: 24px;
+  margin: 0 1rem;
+  min-height: 10px;
+  min-width: 150px;
+}

@@ -1,0 +1,47 @@
+* {
+	background-image: none;
+}
+window {
+	background-color: rgba(1, 1, 1, 0.6);
+    padding: 250px;
+}
+button {
+	color: #fff;
+	background-color: #0E0E0E;
+	border-style: solid;
+	border-width: 1px;
+    border-radius: 0px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+}
+
+button:hover {
+	background-color: #222;
+	color: #fff;
+	outline-style: none;
+}
+
+#lock {
+    background-image: image(url("/home/mox/.local/assets/system/lock.png"));
+}
+
+#shutdown {
+    background-image: image(url("/home/mox/.local/assets/system/power-off.png"));
+}
+
+#reboot {
+    background-image: image(url("/home/mox/.local/assets/system/refresh.png"));
+}
+
+#logout {
+    background-image: image(url("/home/mox/.local/assets/system/logout.png"));
+}
+
+#hibernate {
+    background-image: image(url("/home/mox/.local/assets/system/sleep.png"));
+}
+
+#suspend {
+    background-image: image(url("/home/mox/.local/assets/system/save-energy.png"));
+}

@@ -1,0 +1,60 @@
+(defwidget _sundial []
+  (label :class "sundial-lbl" :halign "end" :hexpand true
+         :text {time.hour >= 4 && time.hour < 5 ? "Früher Morgen" :
+               time.hour >= 5  && time.hour < 6 ? "Dämmerung" :
+               time.hour >= 6 && time.hour < 8 ? "Früher Morgen" :
+               time.hour >= 8 && time.hour < 10 ? "Morgen" :
+               time.hour >= 10 && time.hour < 12 ? "Später Morgen" :
+               time.hour >= 12 && time.hour < 14 ? "Mittag" :
+               time.hour >= 14 && time.hour < 15 ? "Früher Nachmittag" :
+               time.hour >= 15 && time.hour < 16 ? "Nachmittag" :
+               time.hour >= 16 && time.hour < 18 ? "Später Nachmittag" :
+               time.hour >= 18 && time.hour < 19 ? "Dämmerung" : 
+               time.hour >= 19 && time.hour < 20 ? "Früher Abend" : 
+               time.hour >= 20 && time.hour < 22 ? "Abend" :
+               time.hour >= 22 && time.hour < 24 ? "Später Abend" :
+               time.hour == 0 && time.hour < 1 ? "Mitternacht" : "NACHT" }))
+(defwidget _battery [battery status one two three
+                    four five six seven charge]
+  (box :class "bat-box" 
+      (label :class "" :text {status == 'Charging' ? charge :
+        battery < 15 ? seven :
+          battery < 30 ? six :
+            battery < 45 ? five :
+              battery < 60 ? four :
+                battery < 75 ? three :
+                  battery < 95 ? two : one})
+    ))
+
+(defwidget _network []
+  (button
+    :tooltip {net.essid}
+    :style "color: ${net.color};"
+    "${net.icon}"))
+
+(defwidget status []
+  (box :class "layout-box status-bar" :space-evenly false :orientation "vertical"
+    (box :valign "start" :space-evenly false :spacing 10
+      (_sundial)
+      (label :class "sep" :text "   ")
+      (button :class "utility-box" 
+              :onclick "${EWW_CMD} open --toggle status-pop"
+        (box :orientation "horizontal"
+
+        (_battery :status {EWW_BATTERY.BAT0.status}
+                :battery {EWW_BATTERY.BAT0.capacity}
+                :charge "󰂄" :one "" :two "" :three "" :four ""
+                :five "" :six "" :seven "󱃍")
+        (_network)
+        (label :class "" :text {bluetooth.icon})
+        )
+      )
+      (label :class "sep" :text " ")
+      (box :orientation "vertical" :style "margin: 4px;"
+        (label :class "sundial-lbl" :text "${time.hour}:${time.min}" :style "font-family: FiraCode; font-weight: normal; font-size: 15px;")
+        (label :class "sundial-lbl" :text "${time.date}" :style "font-family: FiraCode;")
+      )
+      (label :class "sep" :text " " :style "font-size: 18px;")
+ )
+    (box :space-evenly false :hexpand true :vexpand true
+)))
