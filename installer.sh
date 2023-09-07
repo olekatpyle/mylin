@@ -94,6 +94,7 @@ pacman -S \
     htop \
     tmux \
     bluez \
+    bluez-utils \
     blueman \
     pulseaudio \
     pulseaudio-alsa \
