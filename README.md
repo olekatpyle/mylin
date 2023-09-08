@@ -15,10 +15,7 @@ The following packages need to be installed via pacstrap:
 
 Afterwards create user mox
 # User
-echo "Creating user 'mox'"
 useradd -m -G wheel networkmanager mox
-
-echo "Set password for user mox.."
 passwd mox
 
 Finally add the sshkey and clone the repository into /home/mox/.local/repo.
