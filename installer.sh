@@ -6,12 +6,31 @@ pacman -S \
     linux-headers \
     base-devel \
     openssh \
-    meson
+    meson \
+    microcode \
+    grub \
+    efibootmgr
 
 
 #-----------------------------------------------------------------------------+
 # GLOBAL SETTINGS                                                             |
 #-----------------------------------------------------------------------------+
+
+echo "Performing basic config.."
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+hwclock --systohc
+echo "de_DE.UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=de_DE.UTF-8" >> /etc/locale.conf
+echo "KEYMAP=de-latin1" >> /etc/vconsole.conf
+
+echo -n "Enter hostname: "
+read hostname
+echo "$hostname" >> /etc/hostname
+passwd
+
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig /boot/grub/grub.cfg
 
 # User
 echo "Creating user 'mox'"
@@ -121,12 +140,14 @@ pacman -S \
     pipewire \
     pipewire-pulse \
     pipewire-alsa \
-    wireplumber
+    wireplumber \
+    ttf-firacode-nerd \
+    noto-fonts-cjk \
 
     # General Purpose
     firefox \
     playerctl \
-    betterbird \
+    betterbird
     #qemu-base
     #discord
     #telegram-desktop
