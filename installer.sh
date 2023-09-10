@@ -2,7 +2,7 @@
 
 # INSTALLER DEPS
 echo "Installing software needed for the install process.."
-pacman -S \
+sudo pacman -S \
     linux-headers \
     base-devel \
     meson \
@@ -16,6 +16,7 @@ pacman -S \
 cd /home/mox
 echo "Setting up directory structures.."
 mkdir -p .local/bin
+mkdir .config
 
 mkdir .local/repo
 cd .local/repo
@@ -45,19 +46,19 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # DISPLAY MANAGER
 echo "Setting up GDM.."
-pacman -S gdm
-systemctl enable gdm.service
-ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
+sudo pacman -S gdm
+sudo systemctl enable gdm.service
+sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
 # ZSH + OHMYZSH
-pacman -S zsh
+sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 mv /home/mox/.oh-my-zsh /home/mox/.config/zsh/
 rm ./.zsh*
 
 # EWW (+ deps)
 echo "Installing dependencies for eww.."
-pacman -S \
+sudo pacman -S \
     gtk3 \
     gtk-layer-shell \
     pango \
@@ -79,7 +80,7 @@ cd /home/mox
 echo "Importing gpg keys.."
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --import -
 echo "Installing additional system software.."
-pacman -S \
+sudo pacman -S \
     neovim \
     nano \
     kitty \
@@ -144,7 +145,7 @@ cd /home/mox
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # GDM config
-gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme 'Qogir-cursors'
+sudo gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme 'Qogir-cursors'
 
 # Link/distribute system configs
 rm -rf .config/eww
@@ -164,4 +165,4 @@ ln -sf /home/mox/.local/repo/mylin/mox/config/wofi /home/mox/.config/wofi
 
 cp -r /home/mox/.local/repo/mylin/mox/asstes /home/mox/.local/
 # TODO  09/07/23 - 17:28: If-Abfrage ob NVIDIA genutzt wird
-cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
+sudo cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
