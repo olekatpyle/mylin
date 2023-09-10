@@ -16,7 +16,6 @@ pacman -S \
 cd /home/mox
 echo "Setting up directory structures.."
 mkdir -p .local/bin
-mkdir .config
 
 mkdir .local/repo
 cd .local/repo
@@ -50,6 +49,11 @@ pacman -S gdm
 systemctl enable gdm.service
 ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
+# ZSH + OHMYZSH
+pacman -S zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+mv /home/mox/.oh-my-zsh /home/mox/.config/zsh/
+rm ./.zsh*
 
 # EWW (+ deps)
 echo "Installing dependencies for eww.."
@@ -84,8 +88,6 @@ pacman -S \
     bluez \
     bluez-utils \
     blueman \
-    pulseaudio \
-    pulseaudio-alsa \
     sof-firmware \
     alsa-ucm-conf \
     polkit \
@@ -145,8 +147,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme 'Qogir-cursors'
 
 # Link/distribute system configs
-echo "Linking repository config to system config"
-sleep 2
 rm -rf .config/eww
 rm -rf .config/hypr
 rm -rf .config/kitty
@@ -165,9 +165,3 @@ ln -sf /home/mox/.local/repo/mylin/mox/config/wofi /home/mox/.config/wofi
 cp -r /home/mox/.local/repo/mylin/mox/asstes /home/mox/.local/
 # TODO  09/07/23 - 17:28: If-Abfrage ob NVIDIA genutzt wird
 cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
-
-# ZSH + OHMYZSH
-pacman -S zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mv /home/mox/.oh-my-zsh /home/mox/.config/zsh/
-rm ./.zsh*
