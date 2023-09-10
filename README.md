@@ -7,8 +7,11 @@ the target machine.
 
 The following packages need to be installed via pacstrap:
 - base
+- base-devel
+- meson
 - linux
 - linux-firmware
+- linux-headers
 - nano
 - git
 - networkmanager
@@ -16,10 +19,10 @@ The following packages need to be installed via pacstrap:
 - man-db
 - man-pages
 
-After the base install is completed create user mox and give it a password.
+After the base install is completed create user mox give it a password and edit the sudoers file.
 
 ```bash
 useradd -m -G wheel mox
 passwd mox
-
+EDITOR=nano visudo
 ```

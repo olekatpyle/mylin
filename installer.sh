@@ -1,13 +1,6 @@
 #!/usr/bin/env sh
 
 # INSTALLER DEPS
-echo "Installing software needed for the install process.."
-sudo pacman -S \
-    linux-headers \
-    base-devel \
-    meson \
-
-
 #-----------------------------------------------------------------------------+
 # GLOBAL SETTINGS                                                             |
 #-----------------------------------------------------------------------------+
@@ -43,6 +36,7 @@ yay -S hyprland-git
 # RUST
 echo "Rust installation.. follow rustup instructions.."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source /home/mox/.cargo/env
 
 # DISPLAY MANAGER
 echo "Setting up GDM.."
