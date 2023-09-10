@@ -12,9 +12,6 @@ pacman -S \
 # GLOBAL SETTINGS                                                             |
 #-----------------------------------------------------------------------------+
 
-useradd -m -G wheel networkmanager mox
-passwd mox
-
 # DIRS
 cd /home/mox
 echo "Setting up directory structures.."
