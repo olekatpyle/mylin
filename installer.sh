@@ -44,12 +44,6 @@ sudo pacman -S gdm
 sudo systemctl enable gdm.service
 sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
-# ZSH + OHMYZSH
-sudo pacman -S zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mv /home/mox/.oh-my-zsh /home/mox/.config/zsh/
-rm ./.zsh*
-
 # EWW (+ deps)
 echo "Installing dependencies for eww.."
 sudo pacman -S \
@@ -160,3 +154,9 @@ ln -sf /home/mox/.local/repo/mylin/mox/config/wofi /home/mox/.config/wofi
 cp -r /home/mox/.local/repo/mylin/mox/asstes /home/mox/.local/
 # TODO  09/07/23 - 17:28: If-Abfrage ob NVIDIA genutzt wird
 sudo cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
+
+# ZSH + OHMYZSH
+sudo pacman -S zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+mv /home/mox/.oh-my-zsh /home/mox/.config/zsh/
+rm ./.zsh*
