@@ -88,7 +88,7 @@ sudo pacman -S \
     network-manager-applet \
     wl-clipboard \
     hyprpaper \
-    ripgrep
+    ripgrep \
     wofi \
     bc \
     socat \
