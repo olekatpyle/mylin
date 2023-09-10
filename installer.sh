@@ -12,12 +12,20 @@ pacman -S \
 # GLOBAL SETTINGS                                                             |
 #-----------------------------------------------------------------------------+
 
+useradd -m -G wheel networkmanager mox
+passwd mox
+
 # DIRS
 cd /home/mox
 echo "Setting up directory structures.."
 mkdir -p .local/bin
-cd /home/mox
 
+mkdir .local/repo
+cd .local/repo
+eval $(ssh-agent)
+ssh-add /home/mox/.ssh/github
+git clone git@github.com:olekatpyle/mylin.git
+cd /home/mox
 #-----------------------------------------------------------------------------+
 # SOFTWARE INSTALLATION                                                       |
 #-----------------------------------------------------------------------------+
