@@ -15,3 +15,11 @@ The following packages need to be installed via pacstrap:
 - openssh
 - man-db
 - man-pages
+
+After the base install is completed create user mox and give it a password.
+
+```bash
+useradd -m -G wheel mox
+passwd mox
+
+```
