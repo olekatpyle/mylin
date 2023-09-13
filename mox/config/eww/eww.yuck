@@ -31,7 +31,7 @@
 (defwidget bar []
   (centerbox
     :class "bar"
-    :style "background-color: rgba(0,0,0,.9);"
+    :style "background-color: rgba(14,14,14,1);"
     (left)
     (center)
     (right)
@@ -56,7 +56,7 @@
       :height "32px"
       :anchor "top left")
     :stacking "fg"
-    :exclusive true 
+    :exclusive true
     (left)
 )
 
@@ -67,6 +67,6 @@
       :height "32px"
       :anchor "top right")
     :stacking "fg"
-    :exclusive true 
+    :exclusive true
     (right)
 )

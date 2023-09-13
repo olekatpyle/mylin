@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-active=("#d75fff" "14px")
-inactive=("#FFFFFF" "12px")
-empty=("#646464" "10px")
+colors=("#d75fff" "#ffe25f")
+dimmed=("#FFFFFF" "#FFFFFF")
+empty="#646464"
 
 # get initial focused workspace
 focusedws=$(hyprctl -j monitors | jaq -r '.[] | select(.focused == true) | .activeWorkspace.id')
@@ -14,16 +14,14 @@ declare -A workspaces
 # set color for each workspace
 status() {
   if [ "${o[$1]}" -eq 1 ]; then
+    mon=${monitormap[${workspaces[$1]}]}
     if [ $focusedws -eq "$1" ]; then
-      echo "${active[0]}"
-      echo  "${active[1]}"
+      echo -n "${colors[$mon]}"
     else
-      echo "${inactive[0]}"
-      echo "${inactive[1]}"
+      echo -n "${dimmed[$mon]}"
     fi
   else
-    echo "${empty[0]}"
-    echo "${empty[1]}"
+    echo -n "$empty"
   fi
 }
 
@@ -43,8 +41,7 @@ generate() {
   echo -n '['
 
   for i in {1..8}; do
-    readarray -t css <<< "$( status $i)"
-    echo -n ''$([ $i -eq 1 ] || echo ,) '{ "number": "'"$i"'", "color": "'"${css[0]}"'", "size": "'"${css[1]}"'" }'
+    echo -n ''$([ $i -eq 1 ] || echo ,) '{ "number": "'"$i"'", "color": "'$(status "$i")'" }'
   done
 
   echo ']'
@@ -104,4 +101,4 @@ socat -u UNIX-CONNECT:/tmp/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - |
       ;;
   esac
   generate
-done
+done 

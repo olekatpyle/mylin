@@ -8,4 +8,4 @@
            (button
                     :onclick "hyprctl dispatch workspace ${i.number}"
                     :class "ws-icon"
-                    (label :style "color: ${i.color}" :text "${ws-icons[i.number - 1]}"))))))
+                    (label :style "color: ${i.color}; font-size: ${i.size}" :text "${ws-icons[i.number - 1]}"))))))

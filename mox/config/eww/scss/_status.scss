@@ -15,7 +15,7 @@
 }
 
 button.utility-box:hover {
-  background-color: rgba(0,0,0,5);
+  background-color: rgba(255,255,255,.5);
   box-shadow: 7px 2px 2px black;
 }
 
@@ -130,7 +130,7 @@ button.utility-box:hover {
 .bottom-row {
   margin: .5rem 1rem;
 
-  .battery-icon { 
+  .battery-icon {
     font-size: 2rem;
   }
   .battery-wattage { color: $mauve; }
@@ -158,14 +158,14 @@ button.utility-box:hover {
 }
 
 .wifi-connected {
-  background-color: #cba6f7;  
+  background-color: #cba6f7;
   color: #11111b;
 
   button:hover { background-color: #b695de; }
 }
 
 .airplane-mode-on {
-  background-color: $teal;  
+  background-color: $teal;
   color: #11111b;
 
   button:hover { background-color: #b695de; }

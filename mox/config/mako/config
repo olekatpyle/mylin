@@ -1,5 +1,5 @@
-font=FiraCode 10 
-margin=14
+font=FiraCode 10
+margin=32
 padding=8
 background-color=#000000FF
 text-color=#FFFFFF
@@ -9,9 +9,7 @@ border-radius=2
 border-color=#875faf
 progress-color=#FF0087
 default-timeout=5000
-width=600
+width=480
 height=200
 max-icon-size=96
-anchor=top-right
-
-
+anchor=center-right

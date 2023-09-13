@@ -29,10 +29,6 @@ cd yay
 makepkg -si
 cd /home/mox
 
-# HYPRLAND
-echo "Installing hyprland.."
-yay -S hyprland-git
-
 # RUST
 echo "Rust installation.. follow rustup instructions.."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -40,13 +36,17 @@ source /home/mox/.cargo/env
 
 # DISPLAY MANAGER
 echo "Setting up GDM.."
-sudo pacman -S gdm
+sudo pacman -S --noconfirm gdm
 sudo systemctl enable gdm.service
 sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
+# HYPRLAND
+echo "Installing hyprland.."
+yay -S hyprland-git
+
 # EWW (+ deps)
 echo "Installing dependencies for eww.."
-sudo pacman -S \
+sudo pacman -S --noconfirm \
     gtk3 \
     gtk-layer-shell \
     pango \
@@ -68,7 +68,7 @@ cd /home/mox
 echo "Importing gpg keys.."
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --import -
 echo "Installing additional system software.."
-sudo pacman -S \
+sudo pacman -S --noconfirm \
     neovim \
     nano \
     kitty \
@@ -103,25 +103,13 @@ sudo pacman -S \
     wireplumber \
     ttf-firacode-nerd \
     noto-fonts-cjk \
-
-    # General Purpose
     firefox \
-    playerctl \
-    betterbird
+    playerctl
     #qemu-base
     #discord
     #telegram-desktop
     #etcher
     #gparted
-
-yay -S \
-    swaylock-effects \
-    spotify \
-    jaq \
-    gojq \
-    nwg-look \
-    gtk-theme-material-black \
-    qogir-cursor-theme-git
 
 # GIT
 git config --global user.email "olekatpyle@gmail.com"
@@ -132,8 +120,6 @@ git config --global init.defaultBranch main
 cd /home/mox
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# GDM config
-sudo gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme 'Qogir-cursors'
 
 # Link/distribute system configs
 rm -rf .config/eww
@@ -151,12 +137,23 @@ ln -sf /home/mox/.local/repo/mylin/mox/config/mako /home/mox/.config/mako
 ln -sf /home/mox/.local/repo/mylin/mox/config/wlogout /home/mox/.config/wlogout
 ln -sf /home/mox/.local/repo/mylin/mox/config/wofi /home/mox/.config/wofi
 
-cp -r /home/mox/.local/repo/mylin/mox/asstes /home/mox/.local/
+cp -r /home/mox/.local/repo/mylin/mox/assets /home/mox/.local/
 # TODO  09/07/23 - 17:28: If-Abfrage ob NVIDIA genutzt wird
 sudo cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
+
+yay -S --noconfirm \
+    wlogout \
+    swaylock-effects \
+    spotify \
+    gojq \
+    nwg-look \
+    gtk-theme-material-black \
+    qogir-cursor-theme-git
+
+cargo install jaq
+
+git clone https://github.com/olekatpyle/cvim.git /home/mox/.config/nvim
 
 # ZSH + OHMYZSH
 sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-mv /home/mox/.oh-my-zsh /home/mox/.config/zsh/
-rm ./.zsh*

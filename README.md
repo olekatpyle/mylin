@@ -5,7 +5,7 @@ This installer assumes you have completed the basic install explained in the
 Furthermore you should have transferred the installer + ssh-key for github on
 the target machine.
 
-The following packages need to be installed via pacstrap:
+The following packages need to be installed via pacstrap (pacstrap -K /mnt .. ):
 - base
 - base-devel
 - meson
@@ -25,4 +25,18 @@ After the base install is completed create user mox give it a password and edit 
 useradd -m -G wheel mox
 passwd mox
 EDITOR=nano visudo
+```
+
+# Post Installation
+
+GDM config
+```bash
+sudo gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme 'Qogir-cursors'
+```
+
+remove old zsh files in /home/mox and mv oh-my-zsh directory
+```
+rm -rf ~/.zsh*
+mv ~/.oh-my-zsh ~/.config/zsh/
+ln -s /home/mox/.config/zsh/oni.zsh-theme /home/mox/.config/zsh/.oh-my-zsh/themes/oni.zsh-theme
 ```
