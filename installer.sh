@@ -104,12 +104,18 @@ sudo pacman -S --noconfirm \
     ttf-firacode-nerd \
     noto-fonts-cjk \
     firefox \
-    playerctl
+    playerctl \
+    qt5-wayland \
+    qt6-wayland
     #qemu-base
     #discord
     #telegram-desktop
     #etcher
     #gparted
+
+# Addtional devtools
+sudo pacman -S \
+    valgrind
 
 # GIT
 git config --global user.email "olekatpyle@gmail.com"
@@ -148,6 +154,7 @@ yay -S --noconfirm \
     gojq \
     nwg-look \
     gtk-theme-material-black \
+    mkinitcpio-firmware \
     qogir-cursor-theme-git
 
 cargo install jaq
