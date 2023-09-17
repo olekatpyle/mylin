@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-LC_NUMERIC="en_US.UTF-8"
+LC_NUMERIC="C"
 
-while true; do    
+while true; do
   # human-readable
   freeH=$(free -h --si | rg "Speicher:")
   # non-human-readable

@@ -105,9 +105,14 @@ sudo pacman -S --noconfirm \
     noto-fonts-cjk \
     firefox \
     playerctl \
+    acpi \
+    light \
     qt5-wayland \
-    qt6-wayland
-    #qemu-base
+    qt6-wayland \
+    qemu-full \
+    libvirt \
+    dnsmasq \
+    virt-manager
     #discord
     #telegram-desktop
     #etcher
@@ -115,7 +120,15 @@ sudo pacman -S --noconfirm \
 
 # Addtional devtools
 sudo pacman -S \
-    valgrind
+    valgrind \
+    bear \
+    docker \
+    docker-compose \
+    jre-openjdk \
+    jdk-openjdk \
+    openjdk-doc \
+    openjdk-src \
+    dbeaver
 
 # GIT
 git config --global user.email "olekatpyle@gmail.com"
@@ -126,6 +139,8 @@ git config --global init.defaultBranch main
 cd /home/mox
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+sudo useradd -aG libvirt mox
+sudo systemctl enable libvirtd.service virtlogd.service
 
 # Link/distribute system configs
 rm -rf .config/eww
@@ -152,9 +167,11 @@ yay -S --noconfirm \
     swaylock-effects \
     spotify \
     gojq \
+    batsignal \
     nwg-look \
     gtk-theme-material-black \
     mkinitcpio-firmware \
+    webcord \
     qogir-cursor-theme-git
 
 cargo install jaq

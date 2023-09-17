@@ -31,6 +31,10 @@ export LS_COLORS="$(vivid generate gruvbox-dark)"
 
 alias vim=nvim
 alias htop=htop -C
-alias show=kitty +kitten icat 
+alias show=kitty +kitten icat
 alias mylin='cd /home/mox/.local/repo/mylin/'
+alias dev='cd /home/mox/.local/devel/'
 alias nvc="nvim ~/.config/nvim"
+
+# bun completions
+[ -s "/home/mox/.bun/_bun" ] && source "/home/mox/.bun/_bun"

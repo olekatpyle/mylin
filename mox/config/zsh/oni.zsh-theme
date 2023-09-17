@@ -86,9 +86,9 @@ function venv_info_prompt {
 
 function git_branch_name {
     if [[ -e .git ]]; then
-        BRANCH="$(git branch --show-current)" 
+        BRANCH="$(git branch --show-current)"
         if [[ ${#BRANCH} > 16 ]]; then
-            BRANCH="$(cut -c 1-15 <<< $BRANCH)" 
+            BRANCH="$(cut -c 1-15 <<< $BRANCH)"
         fi
         echo " $GIT_BRANCH $BRANCH "
     fi
@@ -103,7 +103,7 @@ ERR=$'\uf188'
 SEP_L=$'\ue0b6'
 SEP_R=$'\ue0b4'
 ITA=$'\e[3m'
-NODE=$'\uf898'
+NODE=$'\ue718'
 PYTHON=$'\uf81f'
 GIT_BRANCH=$'\ue0a0'
 

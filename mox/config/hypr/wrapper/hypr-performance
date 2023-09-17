@@ -21,4 +21,3 @@ export ZDOTDIR=$HOME/.config/zsh
 export SDL_VIDEODRIVER=wayland
 
 exec Hyprland
-
