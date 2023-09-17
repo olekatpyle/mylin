@@ -36,7 +36,7 @@ source /home/mox/.cargo/env
 
 # DISPLAY MANAGER
 echo "Setting up GDM.."
-sudo pacman -S --noconfirm gdm
+sudo pacman -S  gdm
 sudo systemctl enable gdm.service
 sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
@@ -46,7 +46,7 @@ yay -S hyprland-git
 
 # EWW (+ deps)
 echo "Installing dependencies for eww.."
-sudo pacman -S --noconfirm \
+sudo pacman -S \
     gtk3 \
     gtk-layer-shell \
     pango \
@@ -68,7 +68,7 @@ cd /home/mox
 echo "Importing gpg keys.."
 curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --import -
 echo "Installing additional system software.."
-sudo pacman -S --noconfirm \
+sudo pacman -S \
     neovim \
     nano \
     kitty \
@@ -162,7 +162,7 @@ cp -r /home/mox/.local/repo/mylin/mox/assets /home/mox/.local/
 # TODO  09/07/23 - 17:28: If-Abfrage ob NVIDIA genutzt wird
 sudo cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
 
-yay -S --noconfirm \
+yay -S \
     wlogout \
     swaylock-effects \
     spotify \
