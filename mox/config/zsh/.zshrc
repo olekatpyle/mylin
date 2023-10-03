@@ -9,7 +9,7 @@ source $ZSH/oh-my-zsh.sh
 
 PATH=$PATH:/home/$USER/.local/bin
 
-plugins=(git tmux timer)
+plugins=(tmux timer)
 
 HISTFILE=~/.histfile
 HISTSIZE=1500
@@ -33,8 +33,11 @@ alias vim=nvim
 alias htop=htop -C
 alias show=kitty +kitten icat
 alias mylin='cd /home/mox/.local/repo/mylin/'
-alias dev='cd /home/mox/.local/devel/'
+alias dev='cd /home/mox/.local/dev/'
 alias nvc="nvim ~/.config/nvim"
-
-# bun completions
-[ -s "/home/mox/.bun/_bun" ] && source "/home/mox/.bun/_bun"
+alias kssh="kitty +kitten ssh"
+alias virt="cd /home/mox/.local/virtual/"
+alias docs="cd /home/mox/.local/docs/"
+alias 9e="cd /home/mox/.local/docs/9e/ && nvim index.norg"
+alias z="zathura"
+alias img="kitty +kitten icat"

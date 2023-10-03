@@ -3,15 +3,16 @@
 }
 
 .sundial-lbl {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
 }
 
 .utility-box {
   border-radius: 20px;
-  box-shadow: 10px 5px 5px black;
+  // box-shadow: 1px -1px 5px #d75fff;
   background-color: rgba(0,0,0,.1);
-  padding: 0 3;
+  padding: 0 5;
+  font-size: 16px;
 }
 
 button.utility-box:hover {
@@ -20,7 +21,6 @@ button.utility-box:hover {
 }
 
 .status-icon {
-    font-size: 12px;
     margin: 0 2px 0 2px
 }
 

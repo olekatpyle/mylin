@@ -2,6 +2,7 @@
 ;(include "./modules/quote.yuck")
 (include "./modules/workspaces.yuck")
 (include "./modules/status.yuck")
+(include "./modules/cpu_graph.yuck")
 (include "./popups/status.yuck")
 
 (defwidget left []
@@ -16,7 +17,7 @@
   (box
     :space-evenly false
     :halign "center"
-    ;(quotes)
+    ;(cpu_graph)
   )
 )
 
@@ -40,6 +41,17 @@
 
 (defwindow bar
     :monitor 0
+    :geometry (geometry :x "0%"
+      :y "0px"
+      :width "100%"
+      :anchor "top center")
+    :stacking "fg"
+    :exclusive true
+   (bar)
+)
+
+(defwindow bar2
+    :monitor 1
     :geometry (geometry :x "0%"
       :y "0px"
       :width "100%"

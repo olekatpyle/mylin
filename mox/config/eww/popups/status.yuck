@@ -115,9 +115,9 @@
           :class "brightness-slider-icon icon"
           {brightness.icon})
           (scale
-            :class "brightness-slider" 
-            :value {brightness.level} 
-            :marks true 
+            :class "brightness-slider"
+            :value {brightness.level}
+            :marks true
             :onchange "light -S {}")))
     (box :class "system-info-box"
       ; cpu
@@ -207,7 +207,7 @@
   :geometry (geometry
     :x "1%"
     :y "1%"
-    :style "border: solid 1px white;" 
+    :style "border: solid 1px white;"
     :width "0%"
     :height "0%"
     :anchor "top right")

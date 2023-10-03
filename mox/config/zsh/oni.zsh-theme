@@ -109,10 +109,10 @@ GIT_BRANCH=$'\ue0a0'
 
 # BLACK
 PROMPT='
- %F{000}$SEP_L${ITA}%F{171}%K{000}%n@ %F{015}%1~ $(node_prompt_version)$(venv_info_prompt)%F{000}%k$SEP_R%f $(prompt_status) %B%F{171}$%b%k%f '
+ %F{000}$SEP_L${ITA}%F{171}%K{000}%n@ %F{015}%1~ %F{000}%k$SEP_R%f $(prompt_status) %B%F{171}$%b%k%f '
 
 # WHITE
 # PROMPT='
 #   %F{015}$SEP_L${ITA}%F{000}%K{015}%n @ %F{198}%1~$(node_prompt_version)$(venv_info_prompt)%F{015}%k$SEP_R%f $(prompt_status) %B%F{198}$%b%k%f '
 
-RPROMPT='$(git_prompt_short_sha)$(git_branch_name)${return_status}$(git_time_since_commit)$(git_prompt_status)%{$reset_color%}'
+RPROMPT='$(git_prompt_short_sha)$(git_branch_name)$(git_prompt_status)%{$reset_color%}'

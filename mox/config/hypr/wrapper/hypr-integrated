@@ -8,5 +8,6 @@ export XCURSOR_SIZE=24
 export XDG_SESSION_TYPE=wayland
 export WLR_NO_HARDWARE_CURSORS=1
 export ZDOTDIR=$HOME/.config/zsh
+export PATH=$PATH:/home/$USER/.local/bin
 
 exec Hyprland

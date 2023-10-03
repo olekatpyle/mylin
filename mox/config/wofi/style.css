@@ -1,9 +1,13 @@
 #window {
     background-color: #0e0e0e;
+    border: solid 2px #875faf;
 }
 #input {
     background-color: #0e0e0e;
     color: white;
+    font-size: 20px;
+    background-color: #0e0e0e;
+    border: solid 2px #875faf;
 }
 
 #inner-box {
@@ -11,7 +15,8 @@
 
 #entry {
     margin-left: 4px;
-    font-size: 16px;
+    font-size: 20px;
+    border: solid 1px #000;
 }
 
 #img {

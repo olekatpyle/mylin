@@ -1,0 +1,14 @@
+(defwidget cpu_graph []
+  (box :class "sys-cpu"
+  (graph
+    :class "cpu_graph"
+    :value "${EWW_CPU.avg}"
+    :thickness 50
+    ;; :min 400.0
+    ;; :max 4768.0
+    :time-range "20s"
+    :line-style "round"
+  )
+
+  )
+)

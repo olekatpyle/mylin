@@ -118,7 +118,7 @@ sudo pacman -S \
     #etcher
     #gparted
 
-# Addtional devtools
+# Addtional devtools (c, yocto)
 sudo pacman -S \
     valgrind \
     bear \
@@ -128,7 +128,14 @@ sudo pacman -S \
     jdk-openjdk \
     openjdk-doc \
     openjdk-src \
-    dbeaver
+    dbeaver \
+    python-pip \
+    python-pexpect \
+    python-subunit \
+    xz
+
+yay -S debianutils
+
 
 # GIT
 git config --global user.email "olekatpyle@gmail.com"
