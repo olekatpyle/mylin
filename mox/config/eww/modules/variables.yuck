@@ -4,9 +4,6 @@
 (defpoll time :interval "5s"
   :initial `date +'{"date": "%d/%m","day": "%A","hour":"%H","min":"%M"}'`
  `date +'{"date": "%d/%m","day": "%A","hour":"%H","min":"%M"}'`)
-;(defpoll quote :interval "1800s"
-;  :initial `scripts/quote`
-; `scripts/quote`)
 
 (deflisten workspace "scripts/workspaces")
 (deflisten brightness "scripts/brightness")

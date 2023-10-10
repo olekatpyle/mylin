@@ -112,11 +112,11 @@ sudo pacman -S \
     qemu-full \
     libvirt \
     dnsmasq \
-    virt-manager
-    #discord
-    #telegram-desktop
-    #etcher
-    #gparted
+    virt-manager \
+    grim \
+    slurp \
+    swappy \
+    imagemagick
 
 # Addtional devtools (c, yocto)
 sudo pacman -S \

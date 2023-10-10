@@ -74,7 +74,7 @@ function git_time_since_commit() {
 
 function node_prompt_version {
     if [[ -e "package.json" ]]; then
-        echo "%B%F{015}$NODE %b$(node -v)%k%F{000}%b"
+        echo "%B%F{147}$NODE %b$(node -v)%k%F{000}%b"
     fi
 }
 
@@ -109,7 +109,7 @@ GIT_BRANCH=$'\ue0a0'
 
 # BLACK
 PROMPT='
- %F{000}$SEP_L${ITA}%F{171}%K{000}%n@ %F{015}%1~ %F{000}%k$SEP_R%f $(prompt_status) %B%F{171}$%b%k%f '
+ %F{000}$SEP_L${ITA}%F{171}%K{000}%n@ %F{015}%1~ $(node_prompt_version)%F{000}%k$SEP_R%f $(prompt_status) %B%F{171}$%b%k%f '
 
 # WHITE
 # PROMPT='

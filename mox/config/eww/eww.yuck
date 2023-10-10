@@ -9,7 +9,7 @@
   (box
     :space-evenly false
     :halign "start"
-    (workspaces)
+    ;(workspaces)
   )
 )
 
@@ -17,7 +17,7 @@
   (box
     :space-evenly false
     :halign "center"
-    ;(cpu_graph)
+    (workspaces)
   )
 )
 
@@ -32,7 +32,7 @@
 (defwidget bar []
   (centerbox
     :class "bar"
-    :style "background-color: rgba(14,14,14,1);"
+    :style "background-color: rgba(14,14,14,.8);"
     (left)
     (center)
     (right)
