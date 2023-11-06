@@ -40,3 +40,6 @@ rm -rf ~/.zsh*
 mv ~/.oh-my-zsh ~/.config/zsh/
 ln -s /home/mox/.config/zsh/oni.zsh-theme /home/mox/.config/zsh/.oh-my-zsh/themes/oni.zsh-theme
 ```
+
+# TODO
+- refactor installer into smaller units
