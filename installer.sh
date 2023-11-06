@@ -128,7 +128,7 @@ sudo pacman -S \
     python-pillow \
     python-pipx
 
-# Addtional devtools (c, yocto)
+# Addtional devtools
 sudo pacman -S \
     valgrind \
     bear \
