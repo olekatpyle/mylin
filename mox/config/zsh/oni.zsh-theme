@@ -109,7 +109,7 @@ GIT_BRANCH=$'\ue0a0'
 
 # BLACK
 PROMPT='
- %F{000}$SEP_L${ITA}%F{171}%K{000}%n@ %F{015}%1~ $(node_prompt_version)%F{000}%k$SEP_R%f $(prompt_status) %B%F{171}$%b%k%f '
+ %F{000}$SEP_L%F{171}%K{000}%n@ %F{015}%1~ $(node_prompt_version)%F{000}%k$SEP_R%f $(prompt_status)  %B%F{171}$%b%k%f '
 
 # WHITE
 # PROMPT='

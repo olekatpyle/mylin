@@ -1,0 +1,8 @@
+[Unit]
+Description=Wallpaper service to schedule wallpaper switch
+
+[Service]
+ExecStart=/home/mox/.config/hypr/script/wp_pickr.py
+
+[Install]
+WantedBy=default.target

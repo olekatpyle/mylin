@@ -27,7 +27,7 @@ compinit
 # End of lines added by compinstall
 
 export LANG=de_DE.UTF-8
-export LS_COLORS="$(vivid generate gruvbox-dark)"
+export LS_COLORS="$(vivid generate dracula)"
 
 alias vim=nvim
 alias htop=htop -C

@@ -1,6 +1,11 @@
 #!/usr/bin/env sh
 
-# INSTALLER DEPS
+# Installer Guard (cannot proceed without added ssh identity)
+echo 'Starting installer..'
+echo 'Checking for ssh identity..'
+ssh-add -l || { echo 'No identity found, canceling installer!'; exit 1; }
+echo 'Check successful!'
+
 #-----------------------------------------------------------------------------+
 # GLOBAL SETTINGS                                                             |
 #-----------------------------------------------------------------------------+
@@ -13,10 +18,10 @@ mkdir .config
 
 mkdir .local/repo
 cd .local/repo
-eval $(ssh-agent)
-ssh-add /home/mox/.ssh/github
+
 git clone git@github.com:olekatpyle/mylin.git
 cd /home/mox
+
 #-----------------------------------------------------------------------------+
 # SOFTWARE INSTALLATION                                                       |
 #-----------------------------------------------------------------------------+
@@ -38,6 +43,8 @@ source /home/mox/.cargo/env
 echo "Setting up GDM.."
 sudo pacman -S  gdm
 sudo systemctl enable gdm.service
+
+# prevent gdm not showing wayland-sessions at login
 sudo ln -s /dev/null /etc/udev/rules.d/61-gdm.rules
 
 # HYPRLAND
@@ -116,7 +123,10 @@ sudo pacman -S \
     grim \
     slurp \
     swappy \
-    imagemagick
+    imagemagick \
+    ranger \
+    python-pillow \
+    python-pipx
 
 # Addtional devtools (c, yocto)
 sudo pacman -S \
@@ -124,11 +134,6 @@ sudo pacman -S \
     bear \
     docker \
     docker-compose \
-    jre-openjdk \
-    jdk-openjdk \
-    openjdk-doc \
-    openjdk-src \
-    dbeaver \
     python-pip \
     python-pexpect \
     python-subunit \
@@ -145,7 +150,9 @@ git config --global init.defaultBranch main
 # TMUX
 cd /home/mox
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+pipx install spotify-cli-linux
 
+# libvirt
 sudo useradd -aG libvirt mox
 sudo systemctl enable libvirtd.service virtlogd.service
 
@@ -154,19 +161,26 @@ rm -rf .config/eww
 rm -rf .config/hypr
 rm -rf .config/kitty
 rm -rf .config/mako
+rm -rf .config/ranger
+rm -rf .config/swappy
 rm -rf .config/wlogout
 rm -rf .config/wofi
+rm -rf .config/zathura
+
 
 ln -sf /home/mox/.local/repo/mylin/mox/config/zsh /home/mox/.config/zsh
 ln -sf /home/mox/.local/repo/mylin/mox/config/hypr /home/mox/.config/hypr
 ln -sf /home/mox/.local/repo/mylin/mox/config/eww /home/mox/.config/eww
 ln -sf /home/mox/.local/repo/mylin/mox/config/kitty /home/mox/.config/kitty
 ln -sf /home/mox/.local/repo/mylin/mox/config/mako /home/mox/.config/mako
+ln -sf /home/mox/.local/repo/mylin/mox/config/ranger /home/mox/.config/ranger
+ln -sf /home/mox/.local/repo/mylin/mox/config/swappy /home/mox/.config/swappy
 ln -sf /home/mox/.local/repo/mylin/mox/config/wlogout /home/mox/.config/wlogout
 ln -sf /home/mox/.local/repo/mylin/mox/config/wofi /home/mox/.config/wofi
+ln -sf /home/mox/.local/repo/mylin/mox/config/zathura /home/mox/.config/zathura
 
 cp -r /home/mox/.local/repo/mylin/mox/assets /home/mox/.local/
-# TODO  09/07/23 - 17:28: If-Abfrage ob NVIDIA genutzt wird
+# TODO  09/07/23 - 17:28: optional Logik für NVIDIA
 sudo cp -r /home/mox/.local/repo/mylin/wayland-sessions/* /usr/share/wayland-sessions/
 
 yay -S \
@@ -183,7 +197,15 @@ yay -S \
 
 cargo install jaq
 
-git clone https://github.com/olekatpyle/cvim.git /home/mox/.config/nvim
+# NEOVIM
+git clone https://github.com/olekatpyle/nvim.git /home/mox/.config/nvim
+
+# USER SERVICES
+sudo ln -s /home/mox/.local/repo/mylin/mox/config/hypr/service/wallpaper.service /etc/systemd/user/wallpaper.service
+sudo ln -s /home/mox/.local/repo/mylin/mox/config/hypr/service/wallpaper.timer /etc/systemd/user/wallpaper.timer
+sudo systemctl daemon-reload
+systemctl --user enable wallpaper.service
+systemctl --user enable wallpaper.timer
 
 # ZSH + OHMYZSH
 sudo pacman -S zsh

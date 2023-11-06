@@ -32,7 +32,7 @@
 (defwidget bar []
   (centerbox
     :class "bar"
-    :style "background-color: rgba(14,14,14,.8);"
+    :style "background-color: rgba(6,6,6,1);"
     (left)
     (center)
     (right)
