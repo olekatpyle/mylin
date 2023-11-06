@@ -19,7 +19,7 @@ The following packages need to be installed via pacstrap (pacstrap -K /mnt .. ):
 - man-db
 - man-pages
 
-After the base install is completed create user mox give it a password and edit the sudoers file.
+After the base install is completed create user mox give it a password and edit the sudoers file to grant sudo priv.
 
 ```bash
 useradd -m -G wheel mox
@@ -29,12 +29,12 @@ EDITOR=nano visudo
 
 # Post Installation
 
-GDM config
+GDM config - add cursor
 ```bash
 sudo gdm dbus-launch gsettings set org.gnome.desktop.interface cursor-theme 'Qogir-cursors'
 ```
 
-remove old zsh files in /home/mox and mv oh-my-zsh directory
+remove old zsh files in /home/mox and mv oh-my-zsh directory to new zsh dir
 ```
 rm -rf ~/.zsh*
 mv ~/.oh-my-zsh ~/.config/zsh/

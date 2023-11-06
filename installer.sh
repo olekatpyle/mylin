@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
-# Installer Guard (cannot proceed without added ssh identity)
-echo 'Starting installer..'
+# Installer Guard (cannot proceed without added ssh identity or missing network connection)
+echo 'Starting installer!'
+echo 'Checking network..'
+ping archlinux.org || { echo 'No connection to a network, canceling installer!'; exit 1; }
 echo 'Checking for ssh identity..'
 ssh-add -l || { echo 'No identity found, canceling installer!'; exit 1; }
 echo 'Check successful!'
