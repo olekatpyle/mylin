@@ -2,6 +2,7 @@
 Description=Wallpaper Service
 
 [Timer]
+OnStartupSec=2.5
 OnCalendar=hourly
 
 [Install]

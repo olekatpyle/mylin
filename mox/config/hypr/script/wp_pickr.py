@@ -7,6 +7,7 @@ from os.path import isfile, join
 
 # list of all wallpapers pickr can choose from
 path: str = '/home/mox/.local/assets/wallpapers/pickr'
+# path: str = '/home/mox/.local/assets/wallpapers/pickr/test'
 tmp: list = [wp for wp in listdir(
     path) if isfile(join(path, wp))]
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-active=("#d75fff" "16px")
-inactive=("#FFFFFF" "14px")
-empty=("#646464" "12px")
+active=("#d75fff" "18px")
+inactive=("#FFFFFF" "16px")
+empty=("#646464" "14px")
 
 # get initial focused workspace
 focusedws=$(hyprctl -j monitors | jaq -r '.[] | select(.focused == true) | .activeWorkspace.id')

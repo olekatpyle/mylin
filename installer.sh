@@ -141,8 +141,10 @@ sudo pacman -S \
     python-subunit \
     xz
 
-yay -S debianutils
+yay -S debianutils mods go-task-bin zsh-autosuggestions
 
+# cli tool to access command history quickly
+curl https://hishtory.dev/install.py | python3 -
 
 # GIT
 git config --global user.email "olekatpyle@gmail.com"
@@ -168,6 +170,8 @@ rm -rf .config/swappy
 rm -rf .config/wlogout
 rm -rf .config/wofi
 rm -rf .config/zathura
+rm .configs/qutebrowser/autoconfig.yml
+rm .configs/qutebrowser/config.py
 
 
 ln -sf /home/mox/.local/repo/mylin/mox/config/zsh /home/mox/.config/zsh
@@ -180,6 +184,8 @@ ln -sf /home/mox/.local/repo/mylin/mox/config/swappy /home/mox/.config/swappy
 ln -sf /home/mox/.local/repo/mylin/mox/config/wlogout /home/mox/.config/wlogout
 ln -sf /home/mox/.local/repo/mylin/mox/config/wofi /home/mox/.config/wofi
 ln -sf /home/mox/.local/repo/mylin/mox/config/zathura /home/mox/.config/zathura
+ln -sf /home/mox/.local/repo/mylin/mox/config/qutebrowser/autoconfig.yml /home/mox/.config/qutebrowser/autoconfig.yml
+ln -sf /home/mox/.local/repo/mylin/mox/config/qutebrowser/config.py /home/mox/.config/qutebrowser/config.py
 
 cp -r /home/mox/.local/repo/mylin/mox/assets /home/mox/.local/
 # TODO  09/07/23 - 17:28: optional Logik für NVIDIA
