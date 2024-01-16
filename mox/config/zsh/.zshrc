@@ -7,8 +7,6 @@ ZSH_THEME="oni"
 
 source $ZSH/oh-my-zsh.sh
 
-PATH=$PATH:/home/$USER/.local/bin:/home/$USER/.local/scripts/9e-openbmc/netflix
-
 plugins=(zsh-autosuggestions tmux timer)
 
 HISTFILE=~/.histfile
@@ -24,7 +22,8 @@ bindkey 'M-;' autosuggest-accept
 zstyle :compinstall filename '/home/mox/.zshrc'
 
 autoload -Uz compinit
-compinit
+# store zcompdump in cache
+compinit -d $HOME/.cache/zsh/zcompdump-$ZSH_VERSION
 # End of lines added by compinstall
 
 export LANG=de_DE.UTF-8
@@ -37,7 +36,7 @@ alias tvim='nvim /home/mox/.cache/notes.tmp'
 alias show=kitty +kitten icat
 alias mylin='cd /home/mox/.local/repo/mylin/'
 alias dev='cd /home/mox/.local/dev/'
-alias scripts='cd /home/mox/.local/scripts/'
+alias sc='cd /home/mox/.local/scripts/'
 alias nvc="nvim ~/.config/nvim"
 alias kssh="kitty +kitten ssh"
 alias virt="cd /home/mox/.local/virtual/"
@@ -47,6 +46,7 @@ alias z="zathura"
 alias img="kitty +kitten icat"
 alias h="hishtory tquery"
 alias tasks=go-task
+alias orga="nvim /home/mox/.local/docs/index.norg"
 
 # Hishtory Config:
 export PATH="$PATH:/home/mox/.hishtory"

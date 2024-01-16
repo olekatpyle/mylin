@@ -6,7 +6,9 @@ export NVM_DIR="$HOME/.nvm"
 
 export RANGER_LOAD_DEFAULT_RC=false
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#d75fff"
+export GOPATH="$HOME/go"
 
+export PATH="$PATH:$GOPATH/bin:/home/$USER/.local/bin:/usr/local/texlive/2023/bin/x86_64-linux"
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

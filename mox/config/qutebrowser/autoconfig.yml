@@ -26,6 +26,10 @@ settings:
     global: '#202020'
   colors.tabs.odd.fg:
     global: '#DDDDDD'
+  colors.tabs.selected.even.bg:
+    global: '#875fAF'
+  colors.tabs.selected.odd.bg:
+    global: '#875fAF'
   fileselect.folder.command:
     global:
     - kitty
@@ -84,4 +88,4 @@ settings:
   url.start_pages:
     global: http://localhost:8000
   window.transparent:
-    global: true
+    global: false

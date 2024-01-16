@@ -128,7 +128,10 @@ sudo pacman -S \
     imagemagick \
     ranger \
     python-pillow \
-    python-pipx
+    wireguard-tools \
+    rsync \
+    bind \
+    sshpass
 
 # Addtional devtools
 sudo pacman -S \
@@ -141,7 +144,13 @@ sudo pacman -S \
     python-subunit \
     xz
 
-yay -S debianutils mods go-task-bin zsh-autosuggestions
+yay -S debianutils \
+    mods \
+    go-task-bin \
+    balena-etcher \
+    zsh-autosuggestions
+
+cargo install bat
 
 # cli tool to access command history quickly
 curl https://hishtory.dev/install.py | python3 -
@@ -154,7 +163,6 @@ git config --global init.defaultBranch main
 # TMUX
 cd /home/mox
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-pipx install spotify-cli-linux
 
 # libvirt
 sudo useradd -aG libvirt mox
