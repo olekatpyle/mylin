@@ -147,7 +147,6 @@ sudo pacman -S \
 yay -S debianutils \
     mods \
     go-task-bin \
-    balena-etcher \
     zsh-autosuggestions
 
 cargo install bat
