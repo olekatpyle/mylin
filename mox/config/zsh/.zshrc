@@ -51,3 +51,4 @@ alias orga="nvim /home/mox/.local/docs/index.norg"
 # Hishtory Config:
 export PATH="$PATH:/home/mox/.hishtory"
 source /home/mox/.hishtory/config.zsh
+HISHTORY_SERVER=http://dev.olekatpyle.site.example.com

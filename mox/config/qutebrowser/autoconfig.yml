@@ -30,6 +30,20 @@ settings:
     global: '#875fAF'
   colors.tabs.selected.odd.bg:
     global: '#875fAF'
+  content.autoplay:
+    global: false
+  content.cookies.accept:
+    global: no-unknown-3rdparty
+  content.javascript.alert:
+    global: false
+  content.javascript.can_open_tabs_automatically:
+    global: true
+  content.notifications.presenter:
+    global: libnotify
+  downloads.location.directory:
+    global: /home/mox/downloads
+  downloads.location.prompt:
+    global: false
   fileselect.folder.command:
     global:
     - kitty
@@ -66,20 +80,46 @@ settings:
     global: info
   logging.level.ram:
     global: info
+  qt.force_software_rendering:
+    global: chromium
+  qt.highdpi:
+    global: true
   scrolling.bar:
     global: always
   scrolling.smooth:
     global: true
+  session.lazy_restore:
+    global: true
+  statusbar.position:
+    global: top
+  statusbar.show:
+    global: in-mode
   tabs.favicons.scale:
     global: 1.0
+  tabs.indicator.width:
+    global: 2
   tabs.last_close:
     global: default-page
+  tabs.new_position.unrelated:
+    global: next
   tabs.padding:
     global:
       bottom: 3
       left: 5
       right: 5
       top: 3
+  tabs.position:
+    global: top
+  tabs.show:
+    global: always
+  tabs.show_switching_delay:
+    global: 1400
+  tabs.title.elide:
+    global: none
+  tabs.title.format:
+    global: '{audio}{current_title}'
+  tabs.title.format_pinned:
+    global: '{index}'
   url.default_page:
     global: http://localhost:8000
   url.searchengines:
@@ -87,5 +127,7 @@ settings:
       DEFAULT: https://duckduckgo.com/?q={}
   url.start_pages:
     global: http://localhost:8000
+  window.hide_decoration:
+    global: true
   window.transparent:
     global: false
